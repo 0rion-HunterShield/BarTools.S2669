@@ -1,0 +1,4 @@
++=Entry Start=+
+UPC must have 11 digits, not 8.
+NumberOfDigitsError('UPC must have 11 digits, not 8.')
+Attempted Entry for CODE: 07811403=+Entry End+=
