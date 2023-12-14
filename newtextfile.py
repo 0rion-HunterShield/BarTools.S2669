@@ -40,7 +40,11 @@ with open(error_log,"w+") as log:
                             writers['UPCA/EAN13'].writerow(line)
                             break
                         elif codec in [Code39,EAN8]:
-                            c=codec(cmd,writer=ImageWriter(),add_checksum=False)
+                            if codec == Code39:
+                                c=codec(cmd,writer=ImageWriter(),add_checksum=False)
+                            elif codec == EAN8:
+                                c=codec(cmd,writer=ImageWriter())
+
                             line=[c,]
                             writers['Code39/EAN8'].writerow(line)
                             break
