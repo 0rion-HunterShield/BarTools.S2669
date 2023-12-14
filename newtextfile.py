@@ -6,7 +6,7 @@ from barcode.writer import ImageWriter
 
 codefile=Path('/storage/emulated/0/Download/newfile.txt')
 if not codefile.exists():
-    codefile=codefile.name
+    codefile=Path(codefile.name)
 cmd=''
 cmd_str=''
 mode='w'
@@ -18,7 +18,7 @@ while True:
     else:
         print("invalid mode!")
 error_log=Path("NewTextFile.py.log")
-with open(error_log,"w+") as log:
+with open(codefile.parent/error_log,"w+") as log:
     with open(codefile,mode) as ifile,open(str(codefile).replace(".txt","Code39.txt"),mode) as cd39:
         writers={}
         writers['UPCA/EAN13']=csv.writer(ifile,delimiter=";")
@@ -53,6 +53,6 @@ with open(error_log,"w+") as log:
                         log.write("+=Entry Start=+\n")
                         log.write(str(e)+"\n")
                         log.write(repr(e)+"\n")
-                        log.write("Attempted Entry for CODE: {}".format(cmd))
+                        log.write("Attempted Entry for CODE: {}\n".format(cmd))
                         log.write("=+Entry End+=\n")
 
