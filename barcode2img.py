@@ -172,6 +172,13 @@ with zipfile.ZipFile(package,"w") as z:
 			f='\n'.join(data['payload']['blob']['rawLines'])
 			o.write(f.encode())
 		z.write(entry)
+		fg=requests.get('https://github.com/0rion-HunterShield/BarTools.S2669/blob/main/barcode2img.py')
+		entry=Path('barcode2img.py')
+		with entry.open('wb') as o:
+			data=json.loads(fg.content.decode('utf-8'))
+			f='\n'.join(data['payload']['blob']['rawLines'])
+			o.write(f.encode())
+		z.write(entry)
 	except Exception as e:
 		log.write(str(e)+'/n')
 		log.write(repr(e)+'/n')
